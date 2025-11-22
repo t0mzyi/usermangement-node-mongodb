@@ -6,21 +6,21 @@ import bcrypt from 'bcrypt';
 export const registerUser = async (UserData) => {
 
     try {
-        const {username,useremail,userpass} = UserData
-        const existingUserName =  await UserDb.findOne({userName : username})
-        if(existingUserName){
-            return{status :false, message : "Username already exists please choose another name"}
+        const {userName,email,password} = UserData
+        const existinguserName =  await UserDb.findOne({userName : userName})
+        if(existinguserName){
+            return{status :false, message : "userName already exists please choose another name"}
         }
-        const  existingUser = await UserDb.findOne({email : useremail})
+        const  existingUser = await UserDb.findOne({email : email})
 
         if(existingUser){
             return{status : false, message: "Email already exists"}
         }
 
-        const hashedPassword = await bcrypt.hash(userpass, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new UserDb({
-            userName : username,
-            email :useremail,
+            userName : userName,
+            email :email,
             password : hashedPassword
         })
         await newUser.save()
@@ -34,15 +34,15 @@ export const registerUser = async (UserData) => {
 
 export const loginUser = async (loginData) => {
     try{
-        const {useremail,userpass} = loginData;
+        const {email,password} = loginData;
 
-        const user = await UserDb.findOne({email : useremail})
+        const user = await UserDb.findOne({email : email})
         if(!user){
             console.log(`Someone tried to enter`,user)
             return {status: false, message : "Email not found"}
         }
 
-        const matchPass = await bcrypt.compare(userpass, user.password)
+        const matchPass = await bcrypt.compare(password, user.password)
         if(!matchPass){
             console.log(`someone entered wrong password`,matchPass)
             return {status :  false, message : "Incorrect Passwordd"}

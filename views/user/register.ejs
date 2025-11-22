@@ -38,15 +38,15 @@
                       ><i class="bi bi-person-fill"></i
                     ></span>
                     <input
-                      name="username"
+                      name="userName"
                       type="text"
                       class="form-control"
-                      value="<%= old.username || '' %>"
+                      value="<%= old.userName || '' %>"
                       placeholder="Full Name"
                     />
                   </div>
-                  <% if (errors.username) { %>
-                  <small class="text-danger"><%= errors.username %></small>
+                  <% if (errors.userName) { %>
+                  <small class="text-danger"><%= errors.userName %></small>
                   <% } %>
                 </div>
 
@@ -56,15 +56,15 @@
                       ><i class="bi bi-envelope-fill"></i
                     ></span>
                     <input
-                      name="useremail"
+                      name="email"
                       type="email"
                       class="form-control"
-                      value="<%= old.useremail || '' %>"
+                      value="<%= old.email || '' %>"
                       placeholder="Email Address"
                     />
                   </div>
-                  <% if (errors.useremail) { %>
-                  <small class="text-danger"><%= errors.useremail %></small>
+                  <% if (errors.email) { %>
+                  <small class="text-danger"><%= errors.email %></small>
                   <% } %>
                 </div>
 
@@ -74,14 +74,14 @@
                       ><i class="bi bi-lock-fill"></i
                     ></span>
                     <input
-                      name="userpass"
+                      name="password"
                       type="password"
                       class="form-control"
                       placeholder="Password"
                     />
                   </div>
-                  <% if (errors.userpass) { %>
-                  <small class="text-danger"><%= errors.userpass %></small>
+                  <% if (errors.password) { %>
+                  <small class="text-danger"><%= errors.password %></small>
                   <% } %>
                 </div>
 

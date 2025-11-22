@@ -82,7 +82,7 @@ const loginPost = async (req,res) => {
 
         req.session.user = {
             id: result.user._id,
-            name : result.user.userName,
+            userName : result.user.userName,
             email : result.user.email
         }
         req.session.success = result.message;
@@ -93,6 +93,20 @@ const loginPost = async (req,res) => {
     }
 }
 
+const logout = async (req, res) => {
+    try {
+        req.session.destroy(err => {
+            if(err) {
+                return res.send("Error Logging out")
+            }
+            res.clearCookie("connect.sid")
+            res.redirect('/')
+        })
+    } catch (error) {
+        console.log(`error from logot user ${error}`);
+    }
+}
 
 
-export default {loginGet,registerGet,registerPost,loginPost}
+
+export default {loginGet,registerGet,registerPost,loginPost,logout}
