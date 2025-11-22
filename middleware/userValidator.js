@@ -12,7 +12,7 @@ const registerValidator = [
         .bail()
         .isEmail().withMessage("Enter valid email bro"),
 
-    body("userpass")
+    body("password")
         .notEmpty().withMessage("Password is required")
         .bail()
         .isLength({min : 6}).withMessage("passwords should contain at least 6 letters")
@@ -26,7 +26,7 @@ const loginValidator = [
     .bail()
     .isEmail().withMessage("Enter a valid email"),
 
-  body("userpass")
+  body("password")
     .notEmpty().withMessage("Password is required")
 
 

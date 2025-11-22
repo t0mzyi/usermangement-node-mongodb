@@ -14,6 +14,7 @@ router.get('/home',ensureLoggedIn,(req,res) => res.render('user/home', {user : r
 
 router.post('/register',registerValidator,controller.registerPost)
 router.post('/login',loginValidator,controller.loginPost)
+router.post('/logout', controller.logout)
 
 console.log("user.js router loaded");
 

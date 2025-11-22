@@ -43,9 +43,36 @@ const registerPost = async (req, res) => {
 
     const result = await registerUser(req.body);
 
+<<<<<<< HEAD
     if (!result.status) {
       req.session.error = result.message;
       return res.redirect("/registerPage");
+=======
+            req.session.errors = formattedErrors;
+            req.session.old =  req.body
+
+            return res.redirect('/loginPage')
+        }
+
+        const result = await loginUser(req.body)
+
+        if(!result.status) {
+            req.session.error = result.message;
+            req.session.old = req.body;
+            return res.redirect('/loginPage')
+        }
+
+        req.session.user = {
+            id: result.user._id,
+            userName : result.user.userName,
+            email : result.user.email
+        }
+        req.session.success = result.message;
+        return res.redirect('/home')
+    }catch(err) {
+        console.log(`err in loginPost`,err)
+        return res.status(500).send("server error")
+>>>>>>> 88897df4d4bc10bbacb507672a660117ff18c639
     }
     req.session.success = result.message;
     return res.redirect("/loginPage");
@@ -54,6 +81,7 @@ const registerPost = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
 const loginPost = async (req, res) => {
   try {
     req.session.error = null;
@@ -61,10 +89,26 @@ const loginPost = async (req, res) => {
     if (!errors.isEmpty()) {
       const formattedErrors = {};
       errors.array().forEach((err) => (formattedErrors[err.path] = err.msg));
+=======
+const logout = async (req, res) => {
+    try {
+        req.session.destroy(err => {
+            if(err) {
+                return res.send("Error Logging out")
+            }
+            res.clearCookie("connect.sid")
+            res.redirect('/')
+        })
+    } catch (error) {
+        console.log(`error from logot user ${error}`);
+    }
+}
+>>>>>>> 88897df4d4bc10bbacb507672a660117ff18c639
 
       req.session.errors = formattedErrors;
       req.session.old = req.body;
 
+<<<<<<< HEAD
       return res.redirect("/loginPage");
     }
 
@@ -104,3 +148,7 @@ export const logout = async (req, res) => {
 };
 
 export default { loginGet, registerGet, registerPost, loginPost, logout };
+=======
+
+export default {loginGet,registerGet,registerPost,loginPost,logout}
+>>>>>>> 88897df4d4bc10bbacb507672a660117ff18c639
