@@ -39,7 +39,6 @@
                 <div class="alert alert-success"><%= success %></div>
                 <% } %>
 
-<<<<<<< HEAD
                 <!-- Email -->
                 <div class="mb-4">
                   <div class="input-group">
@@ -55,40 +54,6 @@
                       value="<%= old.email || '' %>"
                     />
                   </div>
-=======
-                        <!-- email -->
-                        <div class="mb-4">
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
-                                <input 
-                                    name="email"
-                                    type="email"
-                                    class="form-control"
-                                    placeholder="Email Address"
-                                    value="<%= old.email || '' %>"
-                                >
-                            </div>
-                            <% if (errors.email) { %>
-                                <small class="text-danger"><%= errors.email %></small>
-                            <% } %>
-                        </div>
-
-                        <!-- password -->
-                        <div class="mb-4">
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-                                <input 
-                                    name="password"
-                                    type="password"
-                                    class="form-control"
-                                    placeholder="Password"
-                                >
-                            </div>
-                            <% if (errors.password) { %>
-                                <small class="text-danger"><%= errors.password %></small>
-                            <% } %>
-                        </div>
->>>>>>> 88897df4d4bc10bbacb507672a660117ff18c639
 
                   <% if (errors.email) { %>
                   <small class="text-danger"><%= errors.email %></small>
