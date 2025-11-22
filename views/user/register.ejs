@@ -20,9 +20,10 @@
         <div class="col-md-6 col-lg-4">
           <div class="text-center mb-5">
             <h1 class="fw-bold display-5" style="color: var(--bs-primary)">
-              UserMangement Dash
+              UserManagement Dash
             </h1>
           </div>
+
           <div class="card p-3">
             <div class="card-body">
               <h2 class="card-title text-center fw-bold fs-4 mb-3">
@@ -31,48 +32,57 @@
               <p class="text-center text-primary mb-5">
                 Join us and get started
               </p>
+
               <form method="POST" action="/register" novalidate>
+                <!-- Full Name -->
                 <div class="mb-4">
                   <div class="input-group">
-                    <span class="input-group-text"
-                      ><i class="bi bi-person-fill"></i
-                    ></span>
+                    <span class="input-group-text">
+                      <i class="bi bi-person-fill"></i>
+                    </span>
+
                     <input
-                      name="username"
+                      name="userName"
                       type="text"
                       class="form-control"
-                      value="<%= old.username || '' %>"
+                      value="<%= old.userName || '' %>"
                       placeholder="Full Name"
                     />
                   </div>
-                  <% if (errors.username) { %>
-                  <small class="text-danger"><%= errors.username %></small>
+
+                  <% if (errors.userName) { %>
+                  <small class="text-danger"><%= errors.userName %></small>
                   <% } %>
                 </div>
 
+                <!-- Email -->
                 <div class="mb-4">
                   <div class="input-group">
-                    <span class="input-group-text"
-                      ><i class="bi bi-envelope-fill"></i
-                    ></span>
+                    <span class="input-group-text">
+                      <i class="bi bi-envelope-fill"></i>
+                    </span>
+
                     <input
-                      name="useremail"
+                      name="email"
                       type="email"
                       class="form-control"
-                      value="<%= old.useremail || '' %>"
+                      value="<%= old.email || '' %>"
                       placeholder="Email Address"
                     />
                   </div>
-                  <% if (errors.useremail) { %>
-                  <small class="text-danger"><%= errors.useremail %></small>
+
+                  <% if (errors.email) { %>
+                  <small class="text-danger"><%= errors.email %></small>
                   <% } %>
                 </div>
 
+                <!-- Password -->
                 <div class="mb-4">
                   <div class="input-group">
-                    <span class="input-group-text"
-                      ><i class="bi bi-lock-fill"></i
-                    ></span>
+                    <span class="input-group-text">
+                      <i class="bi bi-lock-fill"></i>
+                    </span>
+
                     <input
                       name="userpass"
                       type="password"
@@ -80,16 +90,19 @@
                       placeholder="Password"
                     />
                   </div>
+
                   <% if (errors.userpass) { %>
                   <small class="text-danger"><%= errors.userpass %></small>
                   <% } %>
                 </div>
 
+                <!-- Global error message -->
                 <% if (message) { %>
                 <div class="alert alert-danger text-center py-2">
                   <%= message %>
                 </div>
                 <% } %>
+
                 <div class="d-grid mt-5">
                   <button type="submit" class="btn btn-primary btn-lg">
                     Create Account
@@ -98,9 +111,10 @@
               </form>
             </div>
           </div>
+
           <p class="text-center text-primary mt-5">
             Already a member?
-            <a href="/loginPage" class="fw-bold text-decoration-none">Sign In</a>
+            <a href="/login" class="fw-bold text-decoration-none">Sign In</a>
           </p>
         </div>
       </div>

@@ -6,12 +6,12 @@ import bcrypt from 'bcrypt';
 export const registerUser = async (UserData) => {
 
     try {
-        const {username,useremail,userpass} = UserData
-        const existingUserName =  await UserDb.findOne({userName : username})
-        if(existingUserName){
-            return{status :false, message : "Username already exists please choose another name"}
+        const {userName,email,userpass} = UserData
+        const existinguserName =  await UserDb.findOne({userName : userName})
+        if(existinguserName){
+            return{status :false, message : "userName already exists please choose another name"}
         }
-        const  existingUser = await UserDb.findOne({email : useremail})
+        const  existingUser = await UserDb.findOne({email : email})
 
         if(existingUser){
             return{status : false, message: "Email already exists"}
@@ -19,8 +19,8 @@ export const registerUser = async (UserData) => {
 
         const hashedPassword = await bcrypt.hash(userpass, 10);
         const newUser = new UserDb({
-            userName : username,
-            email :useremail,
+            userName : userName,
+            email :email,
             password : hashedPassword
         })
         await newUser.save()
@@ -34,9 +34,9 @@ export const registerUser = async (UserData) => {
 
 export const loginUser = async (loginData) => {
     try{
-        const {useremail,userpass} = loginData;
+        const {email,userpass} = loginData;
 
-        const user = await UserDb.findOne({email : useremail})
+        const user = await UserDb.findOne({email : email})
         if(!user){
             console.log(`Someone tried to enter`,user)
             return {status: false, message : "Email not found"}
