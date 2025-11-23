@@ -2,7 +2,8 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import session from 'express-session'
-import r from "./routes/userRoutes.js"
+import userRouter from "./routes/userRoutes.js"
+import adminRouter from "./routes/adminRoutes.js"
 
 
 import "./config/databaseConnect.js";
@@ -43,7 +44,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 
-app.use(r)
+app.use(userRouter)
+app.use('/admin',adminRouter)
 
 // --- Start the Server ---
 app.listen(port, () => {
