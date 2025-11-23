@@ -21,7 +21,7 @@
                         <li class="nav-item"><a class="nav-link" href="/admin/home">Dashboard</a></li>
                         <li class="nav-item"><a class="nav-link" href="/admin/AddUser">Add User</a></li>
                     </ul>
-                    <a href="/admin/login" class="btn btn-outline-secondary">Logout</a>
+                    <a href="/logout" class="btn btn-outline-secondary">Logout</a>
                 </div>
             </div>
         </nav>
@@ -32,22 +32,26 @@
             <div class="col-lg-7">
                 <div class="d-flex align-items-center mb-5">
                     <a href="/admin/home" class="btn btn-light me-3"><i class="bi bi-arrow-left"></i></a>
-                    <h1 class="h2 fw-bold mb-0 text-dark">Edit User: John Doe</h1>
+                    <h1 class="h2 fw-bold mb-0 text-dark">Edit User: <%= user.userName %></h1>
                 </div>
                 <div class="card p-3">
                     <div class="card-body">
-                         <form class="p-3">
+                        <form class="p-3" action="/admin/EditUser/<%= user._id %>" method="POST">
                             <div class="mb-4">
                                 <label for="name" class="form-label fs-6 fw-bold">Full Name</label>
-                                <input type="text" class="form-control" id="name" value="John Doe" required>
+                                <input type="text" class="form-control" id="name" name="userName" value="<%= user.userName %>" required>
                             </div>
                             <div class="mb-4">
                                 <label for="email" class="form-label fs-6 fw-bold">Email Address</label>
-                                <input type="email" class="form-control" id="email" value="john.doe@example.com" required>
+                                <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" required>
                             </div>
                             <div class="mb-4">
                                 <label for="password" class="form-label fs-6 fw-bold">New Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Leave blank to keep current">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Leave blank to keep current">
+                            </div>
+                            <div class="form-check mb-4">
+                                <input type="checkbox" class="form-check-input" id="isAdmin" name="isAdmin" <%= user.isAdmin ? 'checked' : '' %>>
+                                <label class="form-check-label" for="isAdmin">Admin</label>
                             </div>
                             <div class="pt-3 d-grid">
                                 <button type="submit" class="btn btn-primary btn-lg">Save Changes</button>

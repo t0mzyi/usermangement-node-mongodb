@@ -1,5 +1,6 @@
 import { verifyAdmin } from "../services/adminService.js"
 import UserDb from '../models/dbSchema.js'
+import bcrypt from 'bcrypt'
 
 const getLogin = (req,res) => {
     res.render('admin/login',{
@@ -55,7 +56,41 @@ const logout = async (req,res) => {
     }
 }
 
-// const editUser = async (req,res) => {
+const editUserPage = async (req,res) => {
+    try{
+        const userId = req.params.userid
+        const user = await UserDb.findById(userId)
+        if(!user){
+            return res.status(404).send("User not found")
+        }
+        res.render('admin/EditUser',{user})
+    }catch(err){
+        console.log(err)
+    }
+}
 
-// }
-export default {getLogin,postLogin,getHome,logout}
+const editUserPost = async (req,res) => {
+    try{
+        const userId = req.params.userid
+        const{userName , email, password, isAdmin} = req.body
+
+        let updateData ={
+            userName,
+            email,
+            isAdmin : isAdmin === 'on'
+        }
+
+        if(password && password.trim() !== ''){
+            const hasedPass = await bcrypt.hash(password,10)
+            updateData.password = hasedPass
+        }
+
+        await UserDb.findByIdAndUpdate(userId, updateData)
+
+        res.redirect('/admin/home');
+    }catch(err){
+        console.log(`err in edituserpost`,err)
+        res.status(500).send("Server Error")
+    }
+}
+export default {getLogin,postLogin,getHome,editUserPage,editUserPost,logout}
