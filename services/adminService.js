@@ -1,5 +1,4 @@
-
-
+import UserDb from '../models/dbSchema.js'
 import bcrypt from 'bcrypt'
 
 export const verifyAdmin = async (data) =>{

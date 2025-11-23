@@ -42,6 +42,9 @@
                     <i class="bi bi-plus-lg me-2"></i>Add New User
                 </a>
             </div>
+            <form action="/admin/home" method="get" class="mb-4">
+                <input type="text" name="search" class="form-control" placeholder="Search by name or email..." value="<%= searchQuery || '' %>">
+             </form>
             <div class="table-responsive">
                 <table class="table align-middle bg-dark rounded p-5">
                     <thead>

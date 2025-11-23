@@ -25,8 +25,18 @@ const postLogin = async (req,res) => {
 }
 const getHome = async (req,res) => {
     try{
-        const userdetails = await UserDb.find({});
-        res.render('admin/home', {userdetails})
+        const searchQuery = req.query.search || '';
+        let filter = {}
+        if(searchQuery){
+            filter = {
+                $or : [
+                    {userName : {$regex : searchQuery, $options : 'i'}},
+                    {email :{$regex : searchQuery, $options : 'i'} }
+                ]
+            }
+        }
+        const userdetails = await UserDb.find(filter);
+        res.render('admin/home', {userdetails,searchQuery})
     }catch(err){
         console.log(`err in fetching users`, err)
     }
@@ -44,4 +54,8 @@ const logout = async (req,res) => {
         console.log(`err in logout`,err)
     }
 }
+
+// const editUser = async (req,res) => {
+
+// }
 export default {getLogin,postLogin,getHome,logout}
