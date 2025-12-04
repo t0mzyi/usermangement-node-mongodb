@@ -19,6 +19,10 @@ const loginSchema = new mongoose.Schema({
     isAdmin : {
       type : Boolean,
       default : false  
+    },
+    deleted : {
+        type : Boolean,
+        default : false
     }
 },{
     timestamps : true

@@ -27,6 +27,7 @@ const registerGet = (req, res) => {
 
 const registerPost = async (req, res) => {
   try {
+    
     req.session.error = null;
 
     const errors = validationResult(req);
@@ -85,11 +86,10 @@ const loginPost = async (req, res) => {
     return res.redirect("/home");
   } catch (err) {
     console.log(`err in loginPost`, err);
-    return res.status(500).send("server error");
   }
 };
 
-export const logout = async (req, res) => {
+const logout = async (req, res) => {
   try {
     req.session.destroy((err) => {
       if (err) {
@@ -103,4 +103,13 @@ export const logout = async (req, res) => {
   }
 };
 
-export default { loginGet, registerGet, registerPost, loginPost, logout };
+const homeGet = async (req,res) => {
+  try{
+    console.log(req.session.user)
+    res.render('user/home',{user : req.session.user.name})
+  }catch(err){
+    console.log(`err`,err)
+  }
+}
+
+export default { loginGet, registerGet, registerPost, loginPost, logout ,homeGet};

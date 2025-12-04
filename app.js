@@ -40,12 +40,15 @@ app.use(
 );
 
 
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 
 app.use(userRouter)
 app.use('/admin',adminRouter)
+
+
 
 // --- Start the Server ---
 app.listen(port, () => {

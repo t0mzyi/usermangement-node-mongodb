@@ -6,7 +6,7 @@ export const registerUser = async (UserData) => {
     const { userName, email, userpass } = UserData;
     const existinguserName = await UserDb.findOne({ userName: userName });
     if (existinguserName) {
-      return {status: false,message: "userName already exists please choose another name",};
+      return {status: false,message: "user name already exists please choose another name",};
     }
     const existingUser = await UserDb.findOne({ email: email });
 
@@ -36,7 +36,9 @@ export const loginUser = async (loginData) => {
       console.log(`Someone tried to enter`, user);
       return { status: false, message: "Email not found" };
     }
-
+    if(user.deleted){
+      return {status : false , message : "You are blocked by adminss"}
+    }
     const matchPass = await bcrypt.compare(userpass, user.password);
     if (!matchPass) {
       console.log(`someone entered wrong password`, matchPass);

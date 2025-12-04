@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse" id="adminNavbar">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-4">
                         <li class="nav-item"><a class="nav-link" href="/admin/home">Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/admin/AddUser">Add User</a></li>
+                       
                     </ul>
                     <a href="/logout" class="btn btn-outline-secondary">Logout</a>
                 </div>
@@ -47,7 +47,7 @@
                             </div>
                             <div class="mb-4">
                                 <label for="password" class="form-label fs-6 fw-bold">New Password</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Leave blank to keep current">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="pass?">
                             </div>
                             <div class="form-check mb-4">
                                 <input type="checkbox" class="form-check-input" id="isAdmin" name="isAdmin" <%= user.isAdmin ? 'checked' : '' %>>
